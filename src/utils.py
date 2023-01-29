@@ -1,7 +1,7 @@
 import math
 import re
 
-def show(node,what,cols,nPlaces):
+def show(node,what,cols,nPlaces,lvl=0):
     '''
     prints the tree generated from `DATA:tree`
     '''
@@ -10,20 +10,22 @@ def show(node,what,cols,nPlaces):
             lvl=lvl
         else:
             lvl=0
-    print("| " * lvl + str(len(node.data.rows)) + "  ")
-    if(not node.left or lvl==0):
-        print (o(node.data.stats("mid",node.data.cols.y,nPlaces))) 
-    else:
-        print("")
-    show(node.left, what,cols, nPlaces, lvl+1)
-    show(node.right, what,cols,nPlaces, lvl+1)
+
+    if node:
+        print("| " * lvl + str(len(node["data"].rows)) + "  ")
+        if('left' not in node.keys() or lvl==0):
+            print (node["data"].stats("mid",node["data"].cols.y,nPlaces)) 
+        else:
+            print("")
+        show(node.get("left"), what,cols, nPlaces, lvl+1)
+        show(node.get("right"), what,cols,nPlaces, lvl+1)
 
 seed = 937162211    
 # Utility function for numerics
-def rint(lo,hi):
+def rint(lo = None, hi = None):
     return math.floor(0.5+rand(lo,hi))
 
-def rand(lo,hi):
+def rand(lo = None, hi = None):
     global seed
     if(lo is None):
         lo=0
@@ -43,9 +45,10 @@ def cosine(a,b,c):
     '''
     find x,y from a line connecting `a` to `b`
     '''
-    x1= (a**2+c**2 -b**2)/(2*c)
+    c2 = 1 if c == 0 else 2*c
+    x1= (a**2+c**2 -b**2)/(c2)
     x2=max(0,min(1,x1))
-    y=(a**2-x2**2)**0.5
+    y=abs((a**2-x2**2))**0.5
     return x2,y
 
 # Utility functions for lists
@@ -88,23 +91,23 @@ def keys( t):
 
 # returns one items at random
 def any(t):
-    return t[rint(len(t))]
+    return t[rint(len(t)-1)]
 
 # return some items from 't'
 def many(t,n):
-    u={}
+    u=[]
     for i in range(1,n+1):
-        u[1+len(u)]=any(t)
+        u.append(any(t))
     return u
 
 # Utility functions for Strings
 
-def o(t,isKeys):
+def o(t, isKeys = None):
     if type(t)!=list:
         return str(t)
     def fun(k,v):
         if str(k).find('^_') == -1:
-            return format(':{} {}', o(k), o(v))
+            return ':{} {}'.format(o(k), o(v))
 
     if (len(t)>0 and not isKeys):
         return '{' + ' '.join(str(item) for item in map(t,o)) + '}'

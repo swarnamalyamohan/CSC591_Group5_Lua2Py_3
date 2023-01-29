@@ -17,11 +17,11 @@ cluster.lua : an example csv reader script
 USAGE: cluster.lua  [OPTIONS] [-g ACTION]
 OPTIONS:
   -d  --dump    on crash, dump stack   = false
-  -f  --file    name of file           = ../etc/data/auto93.csv
-  -F  --Far     distance to "faraway"  = .95
+  -f  --file    name of file           = ./etc/data/auto93.csv
+  -F  --Far     distance to "faraway"  = 0.95
   -g  --go      start-up action        = data
   -h  --help    show help              = false
-  -m  --min     stop clusters at N^min = .5
+  -m  --min     stop clusters at N^min = 0.5
   -p  --p       distance coefficient   = 2
   -s  --seed    random number seed     = 937162211
   -S  --Sample  sampling data size     = 512
@@ -71,10 +71,10 @@ def test6():
     global the
     file_path = the['file']
     data = DATA(file_path)
-    print(0,0,utils.o(data.rows[0].cells))
-    for n,t in enumerate(data.around(data.rows[[0]])):
-        if(n%50==0):
-            print(n, utils.rnd(t.dist,2),utils.o(t.row.cells))
+    print(0,0,data.rows[0].cells)
+    for n,t in enumerate(data.around(data.rows[0])):
+        if(n % 50 == 0):
+            print(n, utils.rnd(t[1],2),t[0].cells)
 
 def test7():
     global the
@@ -82,9 +82,9 @@ def test7():
     data = DATA(file_path)
     left,right,A,B,mid,c = data.half()
     print(len(left),len(right),len(data.rows))
-    print(utils.o(A.cells),c)
-    print(utils.o(mid.cells))
-    print(utils.o(B.cells))
+    print(A.cells,c)
+    print(mid.cells)
+    print(B.cells)
 
 def test8():
     global the
@@ -110,3 +110,7 @@ tester.eg("cluster","N-level bi-clustering", test8)
 tester.eg("optimize","semi-supervised optimization", test9)
 
 main.main(the, tester.help, tester.egs)
+
+sys.stdout.close()
+sys.stdout = stdoutOrigin
+

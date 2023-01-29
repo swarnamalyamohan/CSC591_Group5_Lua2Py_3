@@ -1,9 +1,9 @@
-d  = False
-f  = "./etc/data/auto93.csv"
-F  = 0.95
-g  = "data"
-h  = False
-m  = 0.5
+dump  = False
+file  = "./etc/data/auto93.csv"
+Far  = 0.95
+go  = "data"
+help  = False
+min  = 0.5
 p  = 2
-s  = 937162211
-S  = 512
+seed  = 937162211
+Sample  = 512
