@@ -65,8 +65,8 @@ class DATA:
 
     
     def better(self, row1, row2)->bool:
-        s1,s2,ys,x,y,num_ys = 0, 0, self.cols.y, None, None, len(ys)
-        
+        s1,s2,ys,x,y = 0, 0, self.cols.y, None, None
+        num_ys = len(ys)
         for col in ys:
             x  = col.norm( row1.cells[col.at] )
             y  = col.norm( row2.cells[col.at] )
@@ -95,34 +95,35 @@ class DATA:
         for y in ys:
             processed_ys.append((y, self.dist(row1, y, cols)))
         processed_ys.sort(key = lambda x:x[1])
+        return processed_ys
     
-    def half(self, rows, cols = None, above = None):
+    def half(self, rows = None, cols = None, above = None):
         
         def dist(row1, row2, cols):
             return self.dist(row1, row2, cols)
 
-        def project(row, A, B, c):
-            return (row, utils.cosine(dist(row,A), dist(row,B), c))
+        def project(row, A, B, c, cols):
+            return (row, utils.cosine(dist(row,A,cols), dist(row,B,cols), c))
         
         rows = rows if rows != None else self.rows
         some = utils.many(rows, the.Sample)
         A = above if above != None else utils.any(some)
-        B = self.around(A, some)[(the.Far * len(rows))//1][0]
-        c = dist(A, B)
+        B = self.around(A, some)[int(the.Far * len(rows))][0]
+        c = dist(A, B, cols)
         left, right, mid = [], [], None
         
         processed_rows = []
         for row in rows:
-            processed_rows.append(project(row))
+            processed_rows.append(project(row, A, B, c, cols))
         
         processed_rows.sort(key = lambda x:x[1])
 
-        for n,temp in processed_rows :
+        for n,temp in enumerate(processed_rows) :
             if n <= len(processed_rows)//2 :
-                left.append(temp.row)
-                mid = temp.row
+                left.append(temp[0])
+                mid = temp[0]
             else:
-                right.append(temp.row)
+                right.append(temp[0])
         
         return left, right, A, B, mid, c
 
@@ -132,9 +133,9 @@ class DATA:
         cols = cols if cols != None else self.cols.x
         node = {"data" : self.clone(rows)}
         if len(rows) > 2*min:
-            left, right, node.A, node.B, node.mid = self.half(rows,cols,above)
-            node["left"]  = self.cluster(left,  min, cols, node.A)
-            node["right"] = self.cluster(right, min, cols, node.B)
+            left, right, node["A"], node["B"], node["mid"], node["c"] = self.half(rows,cols,above)
+            node["left"]  = self.cluster(left,  min, cols, node["A"])
+            node["right"] = self.cluster(right, min, cols, node["B"])
         return node
     
     def sway(self, rows = None, min = None, cols = None, above = None):
@@ -143,10 +144,10 @@ class DATA:
         cols = cols if cols != None else self.cols.x
         node = {"data" : self.clone(rows)}
         if len(rows) > 2*min:
-            left, right, node["A"], node["B"], node["mid"] = self.half(rows,cols,above)
+            left, right, node["A"], node["B"], node["mid"], node["c"] = self.half(rows,cols,above)
             if self.better(node["B"], node["A"]):
                 left,right,node["A"],node["B"] = right,left,node["B"],node["A"]
-            node["left"]  = self.sway(left,  min, cols, node.A)
+            node["left"]  = self.sway(left,  min, cols, node["A"])
         return node
 
     
