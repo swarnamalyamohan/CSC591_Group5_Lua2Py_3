@@ -16,7 +16,7 @@
 [![license](https://img.shields.io/github/license/swarnamalyamohan/CSC591_Group5_Lua2Py_3?style=plastic)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/blob/main/LICENSE.md)
 [![language](https://img.shields.io/github/languages/top/swarnamalyamohan/CSC591_Group5_Lua2Py_3)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/search?l=python)<br/>
 
-[![DOI](https://sandbox.zenodo.org/badge/594236739.svg)](https://sandbox.zenodo.org/badge/latestdoi/594236739)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7587624.svg)](https://doi.org/10.5281/zenodo.7587624)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/swarnamalyamohan/CSC591_Group5_Lua2Py_3/test.yml)
 [![codecov](https://codecov.io/gh/swarnamalyamohan/CSC591_Group5_Lua2Py_3/branch/main/graph/badge.svg?token=qWGIYYV7tV)](https://codecov.io/gh/swarnamalyamohan/CSC591_Group5_Lua2Py_3)
   
