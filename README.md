@@ -67,11 +67,11 @@
     
   - Display help menu: 
   
-    $ python ./Tests/Test_engine.py -h true
+    $ python ./test/test_engine.py -h true
     
   - Run all the tests:
   
-    $ python ./Tests/Test_engine.py -g all
+    $ python ./test/test_engine.py -g all
     
 
 
