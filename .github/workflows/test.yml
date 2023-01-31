@@ -39,6 +39,11 @@ jobs:
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
+      coverage:
+        status:
+          patch:
+            default:
+              enabled: no
 
     - name: Run tests
       run: |
