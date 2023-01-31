@@ -16,7 +16,10 @@
 [![license](https://img.shields.io/github/license/swarnamalyamohan/CSC591_Group5_Lua2Py_3?style=plastic)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/blob/main/LICENSE.md)
 [![language](https://img.shields.io/github/languages/top/swarnamalyamohan/CSC591_Group5_Lua2Py_3)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/search?l=python)<br/>
   
-
+[![Tests](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/test.yml/badge.svg)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/test.yml)
+[![Python Style Checker](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/python_style_checker.yml/badge.svg)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/python_style_checker.yml)
+[![Python Syntax Checker](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/python_syntax_checker.yml/badge.svg)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/python_syntax_checker.yml)
+[![Pylint](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/pylint.yml/badge.svg)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/actions/workflows/pylint.yml)
 
 [![GitHub issues](https://img.shields.io/github/issues-raw/swarnamalyamohan/CSC591_Group5_Lua2Py_3?style=plastic)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/swarnamalyamohan/CSC591_Group5_Lua2Py_3?style=plastic)](https://github.com/swarnamalyamohan/CSC591_Group5_Lua2Py_3/issues?q=is%3Aissue+is%3Aclosed)
